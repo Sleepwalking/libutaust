@@ -589,14 +589,16 @@ utaust_ust* utaust_parse(const char* src) {
 utaust_iterator* utaust_create_iterator(utaust_ust* src) {
   utaust_iterator* ret = malloc(sizeof(utaust_iterator));
   ret -> curr_note = src -> first;
+  ret -> curr_tempo = src -> header.tempo;
+  if(ret -> curr_note != NULL && ret -> curr_note -> tempo != 0)
+    ret -> curr_tempo = ret -> curr_note -> tempo;
   ret -> curr_ticks = 0;
   ret -> curr_time = 0;
-  ret -> curr_tempo = src -> header.tempo;
+  ret -> curr_duration = 60.0 / 480.0 / ret -> curr_tempo *
+    ret -> curr_note -> length;
   ret -> correction = 0;
   ret -> iter_direction = 0;
   ret -> default_tempo = src -> header.tempo;
-  if(ret -> curr_note != NULL && ret -> curr_note -> tempo != 0)
-    ret -> curr_tempo = ret -> curr_note -> tempo;
   return ret;
 }
 
@@ -612,6 +614,7 @@ int utaust_iterator_next(utaust_iterator* dst) {
   dst -> correction = (sum - dst -> curr_time) - diff;
   dst -> curr_ticks += dst -> curr_note -> length;
   dst -> curr_time = sum;
+  dst -> curr_duration = duration;
   dst -> curr_note = dst -> curr_note -> next;
   if(dst -> curr_note != NULL && dst -> curr_note -> tempo != 0)
     dst -> curr_tempo = dst -> curr_note -> tempo;
@@ -644,6 +647,7 @@ int utaust_iterator_prev(utaust_iterator* dst) {
   volatile double sub = dst -> curr_time - diff;
   dst -> correction = (dst -> curr_time - sub) - diff;
   dst -> curr_time = sub;
+  dst -> curr_duration = duration;
   return 1;
 }
 

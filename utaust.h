@@ -80,6 +80,7 @@ typedef struct {
   double default_tempo;
   double curr_ticks;
   double curr_time;
+  double curr_duration;
   double curr_tempo;
 
   double correction;
