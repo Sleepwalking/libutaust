@@ -614,10 +614,11 @@ int utaust_iterator_next(utaust_iterator* dst) {
   dst -> correction = (sum - dst -> curr_time) - diff;
   dst -> curr_ticks += dst -> curr_note -> length;
   dst -> curr_time = sum;
-  dst -> curr_duration = duration;
   dst -> curr_note = dst -> curr_note -> next;
   if(dst -> curr_note != NULL && dst -> curr_note -> tempo != 0)
     dst -> curr_tempo = dst -> curr_note -> tempo;
+  dst -> curr_duration = 60.0 / 480.0 / dst -> curr_tempo *
+    dst -> curr_note -> length;
   return 1;
 }
 
