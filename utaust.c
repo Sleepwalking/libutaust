@@ -456,27 +456,27 @@ static void utaust_parse_setting(utaust_ust* dst, const char* str) {
   else
   if((idx = check_attr(str, "ProjectName")) != 0) {
     free(dst -> header.project_name);
-    dst -> header.project_name = strdup(str + idx);
+    dst -> header.project_name = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "VoiceDir")) != 0) {
     free(dst -> header.voice_dir);
-    dst -> header.voice_dir = strdup(str + idx);
+    dst -> header.voice_dir = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "OutFile")) != 0) {
     free(dst -> header.out_file);
-    dst -> header.out_file = strdup(str + idx);
+    dst -> header.out_file = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "CacheDir")) != 0) {
     free(dst -> header.cache_dir);
-    dst -> header.cache_dir = strdup(str + idx);
+    dst -> header.cache_dir = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "Tool1")) != 0) {
     free(dst -> header.tool1);
-    dst -> header.tool1 = strdup(str + idx);
+    dst -> header.tool1 = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "Tool2")) != 0) {
     free(dst -> header.tool2);
-    dst -> header.tool2 = strdup(str + idx);
+    dst -> header.tool2 = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "Mode2")) != 0)
     dst -> header.mode2 = ! strcmp(str + idx, "True");
@@ -492,7 +492,7 @@ static void utaust_parse_note(utaust_note* dst, const char* str) {
   else
   if((idx = check_attr(str, "Lyric")) != 0) {
     free(dst -> lyric);
-    dst -> lyric = strdup(str + idx);
+    dst -> lyric = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "NoteNum")) != 0)
     dst -> note_num = atoi(str + idx);
@@ -508,7 +508,7 @@ static void utaust_parse_note(utaust_note* dst, const char* str) {
   else
   if((idx = check_attr(str, "Flags")) != 0) {
     free(dst -> flags);
-    dst -> flags = strdup(str + idx);
+    dst -> flags = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "PBType")) != 0)
     dst -> pb_type = atoi(str + idx);
@@ -518,27 +518,27 @@ static void utaust_parse_note(utaust_note* dst, const char* str) {
   else
   if((idx = check_attr(str, "PitchBend")) != 0) {
     free(dst -> pitchbend);
-    dst -> pitchbend = strdup(str + idx);
+    dst -> pitchbend = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "PBS")) != 0) {
     free(dst -> pbs);
-    dst -> pbs = strdup(str + idx);
+    dst -> pbs = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "PBW")) != 0) {
     free(dst -> pbw);
-    dst -> pbw = strdup(str + idx);
+    dst -> pbw = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "PBY")) != 0) {
     free(dst -> pby);
-    dst -> pby = strdup(str + idx);
+    dst -> pby = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "VBR")) != 0) {
     free(dst -> vbr);
-    dst -> vbr = strdup(str + idx);
+    dst -> vbr = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "Envelope")) != 0) {
     free(dst -> envelope);
-    dst -> envelope = strdup(str + idx);
+    dst -> envelope = utaust_strdup(str + idx);
   } else
   if((idx = check_attr(str, "Tempo")) != 0)
     dst -> tempo = atof(str + idx);
