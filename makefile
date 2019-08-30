@@ -4,12 +4,17 @@ LINK = $(CROSS)gcc
 AR = $(CROSS)ar
 
 OBJS = build/utaust.o
+CONFIG = Debug
 
 ARFLAGS = -rv
 CFLAGS_COMMON = -DFP_TYPE=float -std=c99 -Wall -Wno-unused-result -fPIC
 CFLAGS_DBG = $(CFLAGS_COMMON) -Og -g
 CFLAGS_REL = $(CFLAGS_COMMON) -Ofast
-CFLAGS = $(CFLAGS_DBG)
+ifeq ($(CONFIG), Debug)
+  CFLAGS = $(CFLAGS_DBG)
+else
+  CFLAGS = $(CFLAGS_REL)
+endif
 
 TARGET_A = build/libutaust.a
 
