@@ -6,7 +6,8 @@ OBJS = build/utaust.o
 CONFIG = Debug
 
 ARFLAGS = -rv
-CFLAGS_COMMON = -DFP_TYPE=float -std=c99 -Wall -Wno-unused-result -fPIC
+CFLAGS_PLAT =
+CFLAGS_COMMON = -DFP_TYPE=float -std=c99 -Wall -Wno-unused-result -fPIC $(CFLAGS_PLAT)
 ifeq ($(CXX), emcc)
   CFLAGS_DBG = $(CFLAGS_COMMON) -O1 -g -D_DEBUG
   CFLAGS_REL = $(CFLAGS_COMMON) -O3
