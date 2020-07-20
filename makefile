@@ -52,4 +52,4 @@ install: $(TARGET_A)
 	cp utaust.h $(PREFIX)/include/libutaust
 
 clean:
-	rm build/*
+	rm -f build/*
